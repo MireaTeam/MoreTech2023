@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">MoreTech2023</string>
+    <string name="app_name" translatable="false">MoreTech2023</string>
+    <string name="welcome">Welcome!</string>
+    <string name="welcome_description">In this app you can find a VTB Bank office that will suit you. Just choose which way of transportation you intend to use. Next, you will be able to choose what service you need and a list of offices that suit you.</string>
+    <string name="next">Next</string>
+    <string name="on_foot">On foot</string>
+    <string name="by_car">By car</string>
+    <string name="on_public_transport">Transport</string>
 </resources>
