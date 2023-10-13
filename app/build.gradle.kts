@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "ru.mirea.moretech2023"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "ru.mirea.moretech2023"
