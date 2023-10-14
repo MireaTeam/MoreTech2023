@@ -27,6 +27,7 @@ import com.yandex.mapkit.layers.ObjectEvent
 import com.yandex.mapkit.mapview.MapView
 import com.yandex.runtime.Error
 import com.yandex.runtime.ui_view.ViewProvider
+import ru.mirea.moretech2023.network.Algs
 
 import ru.mirea.moretech2023.ui.screens.officechoice.YandexMap
 
@@ -73,10 +74,10 @@ class MainActivity : ComponentActivity(), DrivingSession.DrivingRouteListener {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val context = applicationContext
+        Algs(context)
         mapView = MapView(context)
 
         ActivityCompat.requestPermissions(
