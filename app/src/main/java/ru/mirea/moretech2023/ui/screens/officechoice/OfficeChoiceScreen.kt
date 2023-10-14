@@ -10,10 +10,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.yandex.mapkit.mapview.MapView
 
 @Composable
-fun YandexMap() {
-    val context = LocalContext.current
-    val mapView = MapView(context)
-
+fun YandexMap(mapView: MapView) {
     Column {
         AndroidView({ mapView }) { view ->
             // Add the map view to your layout

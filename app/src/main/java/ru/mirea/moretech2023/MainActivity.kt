@@ -3,7 +3,9 @@ package ru.mirea.moretech2023
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.ui.platform.LocalContext
 import com.yandex.mapkit.layers.ObjectEvent
+import com.yandex.mapkit.mapview.MapView
 import com.yandex.mapkit.user_location.UserLocationObjectListener
 import com.yandex.mapkit.user_location.UserLocationView
 import ru.mirea.moretech2023.ui.screens.officechoice.YandexMap
@@ -12,9 +14,13 @@ import ru.mirea.moretech2023.ui.screens.welcome.WelcomeScreen
 class MainActivity : ComponentActivity(), UserLocationObjectListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val context = applicationContext
+        val mapView = MapView(context)
+
         setContent {
             //WelcomeScreen()
-            YandexMap()
+            YandexMap(mapView)
         }
     }
 
