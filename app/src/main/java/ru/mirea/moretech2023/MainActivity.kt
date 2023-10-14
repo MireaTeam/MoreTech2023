@@ -82,6 +82,7 @@ fun MoreTechVtbApp(mapView: MapView, mapViewContext: Context) {
                         "/{chosenserviceid}"
             ) { backStackEntry ->
                 OfficeChoiceScreen(
+                    { navController.navigate("officedetails") },
                     mapView = mapView,
                     context = mapViewContext,
                     backStackEntry.arguments?.getString("latitude"),

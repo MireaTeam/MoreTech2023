@@ -73,4 +73,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     implementation ("com.yandex.android:maps.mobile:4.3.1-full")
+
+    implementation ("com.github.bumptech.glide:compose:1.0.0-beta01")
+
 }
