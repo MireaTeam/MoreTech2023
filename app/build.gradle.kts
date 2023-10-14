@@ -73,5 +73,4 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     implementation ("com.yandex.android:maps.mobile:4.3.1-full")
-
 }
