@@ -87,6 +87,7 @@ class Algs {
         try {
             val jsonArray = JSONArray(readJSONFromAssets(context, "offices.json"))
 
+
             for (i in 0 until jsonArray.length()) {
                 val jsonObject = jsonArray.getJSONObject(i)
 
