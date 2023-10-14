@@ -6,4 +6,7 @@
     <string name="on_foot">On foot</string>
     <string name="by_car">By car</string>
     <string name="on_public_transport">Transport</string>
+    <string name="choose_service">Choose service</string>
+    <string name="for_individuals">For individuals</string>
+    <string name="for_business">For business</string>
 </resources>
