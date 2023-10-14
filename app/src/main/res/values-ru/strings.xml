@@ -9,4 +9,7 @@
     <string name="choose_service">Выберите услугу</string>
     <string name="for_individuals">Для физических лиц</string>
     <string name="for_business">Для ИП и юридических лиц</string>
+    <string name="nearby">Поблизости</string>
+    <string name="input_address">Ввести адрес</string>
+    <string name="look_for_offices">Искать...</string>
 </resources>
