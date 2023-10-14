@@ -1,15 +1,18 @@
 package ru.mirea.moretech2023
 
 import android.Manifest
-import android.app.Activity
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-
+import androidx.compose.runtime.Composable
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.directions.DirectionsFactory
 import com.yandex.mapkit.directions.driving.DrivingRoute
@@ -23,14 +26,78 @@ import com.yandex.mapkit.location.LocationManager
 import com.yandex.mapkit.location.LocationStatus
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.MapObjectCollection
-import com.yandex.mapkit.layers.ObjectEvent
 import com.yandex.mapkit.mapview.MapView
 import com.yandex.runtime.Error
 import com.yandex.runtime.ui_view.ViewProvider
 import ru.mirea.moretech2023.network.Algs
+import ru.mirea.moretech2023.ui.screens.officechoice.OfficeChoiceScreen
+import ru.mirea.moretech2023.ui.screens.officedetails.OfficeDetailsScreen
+import ru.mirea.moretech2023.ui.screens.servicechoice.ServiceChoiceScreen
+import ru.mirea.moretech2023.ui.screens.welcome.WelcomeScreen
+import ru.mirea.moretech2023.ui.theme.MoreTech2023Theme
 
-import ru.mirea.moretech2023.ui.screens.officechoice.YandexMap
+@Composable
+fun MoreTechVtbApp(mapView: MapView, mapViewContext: Context) {
+    MoreTech2023Theme {
+        val navController = rememberNavController()
 
+        NavHost(navController = navController, startDestination = "welcome") {
+            composable("welcome") {
+                WelcomeScreen { latitude, longtitude, chosenTransportationMethod ->
+                    navController.navigate(
+                        "servicechoice" +
+                                "/$latitude" +
+                                "/$longtitude" +
+                                "/$chosenTransportationMethod"
+                    )
+                }
+            }
+
+            composable(
+                "servicechoice" +
+                        "/{latitude}" +
+                        "/{longtitude}" +
+                        "/{chosentransportationmethod}"
+            ) { backStackEntry ->
+                ServiceChoiceScreen(
+                    { latitude, longtitude, chosenTransportationMethod, chosenServiceId ->
+                        navController.navigate(
+                            "officechoice" +
+                                    "/$latitude" +
+                                    "/$longtitude" +
+                                    "/$chosenTransportationMethod" +
+                                    "/$chosenServiceId"
+                        )
+                    },
+                    backStackEntry.arguments?.getString("latitude"),
+                    backStackEntry.arguments?.getString("longtitude"),
+                    backStackEntry.arguments?.getString("chosentransportationmethod")
+                )
+            }
+
+            composable(
+                "officechoice" +
+                        "/{latitude}" +
+                        "/{longtitude}" +
+                        "/{chosentransportationmethod}" +
+                        "/{chosenserviceid}"
+            ) { backStackEntry ->
+                OfficeChoiceScreen(
+                    { navController.navigate("officedetails") },
+                    mapView = mapView,
+                    context = mapViewContext,
+                    backStackEntry.arguments?.getString("latitude"),
+                    backStackEntry.arguments?.getString("longtitude"),
+                    backStackEntry.arguments?.getString("chosentransportationmethod"),
+                    backStackEntry.arguments?.getString("chosenserviceid")
+                )
+            }
+
+            composable("officedetails") { OfficeDetailsScreen() }
+        }
+
+    }
+}
 
 class MainActivity : ComponentActivity(), DrivingSession.DrivingRouteListener {
 
@@ -89,16 +156,18 @@ class MainActivity : ComponentActivity(), DrivingSession.DrivingRouteListener {
             200
         )
 
-        MapKitFactory.initialize(context);
-        DirectionsFactory.initialize(context);
+        MapKitFactory.initialize(context)
+        DirectionsFactory.initialize(context)
 
         setContent {
-            //WelcomeScreen()
-            YandexMap(mapView!!, context)
+            MoreTechVtbApp(
+                mapView = mapView!!,
+                context
+            )
         }
 
 
-        mapView!!.getMap().setRotateGesturesEnabled(false);
+        mapView!!.getMap().setRotateGesturesEnabled(false)
 
 
         val cOARSE_LOCATION =
@@ -106,9 +175,8 @@ class MainActivity : ComponentActivity(), DrivingSession.DrivingRouteListener {
         val fINE_LOCATION =
             ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
 
-        if (cOARSE_LOCATION == PackageManager.PERMISSION_GRANTED || fINE_LOCATION == PackageManager.PERMISSION_GRANTED)
-        {
-            locationManager = MapKitFactory.getInstance().createLocationManager();
+        if (cOARSE_LOCATION == PackageManager.PERMISSION_GRANTED || fINE_LOCATION == PackageManager.PERMISSION_GRANTED) {
+            locationManager = MapKitFactory.getInstance().createLocationManager()
 
 
             myLocationListener = object : LocationListener {
@@ -118,7 +186,8 @@ class MainActivity : ComponentActivity(), DrivingSession.DrivingRouteListener {
 
                         drawMyLocationMark(myLocation!!, mapView!!)
 
-                        ROUTE_START_LOCATION = Point(myLocation!!.getLatitude(), myLocation!!.getLongitude())
+                        ROUTE_START_LOCATION =
+                            Point(myLocation!!.getLatitude(), myLocation!!.getLongitude())
 
 
 
@@ -133,16 +202,14 @@ class MainActivity : ComponentActivity(), DrivingSession.DrivingRouteListener {
 
                 override fun onLocationStatusUpdated(p0: LocationStatus) {
                     if (p0 == LocationStatus.NOT_AVAILABLE) {
-                        System.out.println("sdncvoadsjv");
+                        System.out.println("sdncvoadsjv")
                     }
                 }
 
             }
 
 
-        }
-        else
-        {
+        } else {
         }
 
     }

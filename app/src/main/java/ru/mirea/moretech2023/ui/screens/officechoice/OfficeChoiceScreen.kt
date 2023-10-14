@@ -1,44 +1,54 @@
 package ru.mirea.moretech2023.ui.screens.officechoice
 
-import android.Manifest
 import android.content.Context
-import android.content.pm.PackageManager
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.content.ContextCompat
-import com.yandex.mapkit.MapKitFactory
-import com.yandex.mapkit.directions.DirectionsFactory
-import com.yandex.mapkit.directions.driving.DrivingRouter
-import com.yandex.mapkit.directions.driving.DrivingSession
-import com.yandex.mapkit.geometry.Point
-import com.yandex.mapkit.location.FilteringMode
-import com.yandex.mapkit.location.Location
-import com.yandex.mapkit.location.LocationListener
-import com.yandex.mapkit.location.LocationManager
-import com.yandex.mapkit.location.LocationStatus
-import com.yandex.mapkit.map.CameraPosition
-import com.yandex.mapkit.map.MapObjectCollection
+import androidx.compose.ui.zIndex
 import com.yandex.mapkit.mapview.MapView
 
 
-
-
 @Composable
-fun YandexMap(mapView: MapView, context: Context) {
-
-
-
-
+fun OfficeChoiceScreen(
+    navigateToDetailScreen: () -> Unit,
+    mapView: MapView,
+    context: Context,
+    setLatitude: String?,
+    setLongitude: String?,
+    chosenTransportationMethod: String?,
+    chosenServiceId: String?
+) {
+    // YandexMap
+    // TODO: Add navigation to office detail screen
     Column {
         AndroidView({ mapView }) { view ->
-            view.layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
+
         }
+
+        ExtendedFloatingActionButton(
+            onClick = { navigateToDetailScreen },
+            icon = { Icon(Icons.Filled.Edit, "Extended floating action button.") },
+            text = { Text(text = "Test: jump to details") },
+            modifier = Modifier.zIndex(1f)
+        )
     }
+}
 
-
+@Preview
+@Composable
+fun OfficeChoiceScreenPreview() {
+    ExtendedFloatingActionButton(
+        onClick = {  },
+        icon = { Icon(Icons.Filled.Edit, "Extended floating action button.") },
+        text = { Text(text = "Test: jump to details") },
+    )
 }

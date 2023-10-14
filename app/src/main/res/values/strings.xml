@@ -9,4 +9,7 @@
     <string name="choose_service">Choose service</string>
     <string name="for_individuals">For individuals</string>
     <string name="for_business">For business</string>
+    <string name="nearby">Nearby</string>
+    <string name="input_address">Input address</string>
+    <string name="look_for_offices">Look for offices...</string>
 </resources>
