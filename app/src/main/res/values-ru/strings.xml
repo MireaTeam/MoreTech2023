@@ -6,4 +6,7 @@
     <string name="on_foot">Пешком</string>
     <string name="by_car">Машина</string>
     <string name="on_public_transport">Транспорт</string>
+    <string name="choose_service">Выберите услугу</string>
+    <string name="for_individuals">Для физических лиц</string>
+    <string name="for_business">Для ИП и юридических лиц</string>
 </resources>
