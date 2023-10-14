@@ -1,4 +1,8 @@
 package ru.mirea.moretech2023.ui.screens.officedetails
 
-class OfficeDetailsScreen {
+import androidx.compose.runtime.Composable
+
+@Composable
+fun OfficeDetailsScreen() {
+
 }
