@@ -24,26 +24,45 @@ import ru.mirea.moretech2023.network.models.VtbService
 import ru.mirea.moretech2023.ui.theme.MoreTech2023Theme
 
 @Composable
-fun ServiceChoiceScreen() {
+fun ServiceChoiceScreen(
+    navigateToOfficeChoiceScreen: (
+        latitude: String?,
+        longtitude: String?,
+        chosenTransportationMethod: String?,
+        chosenServiceId: String?
+    ) -> Unit,
+    setLatitude: String?,
+    setLongitude: String?,
+    chosenTransportationMethod: String?
+) {
     val scrollState = rememberScrollState()
 
     MoreTech2023Theme {
         Surface(modifier = Modifier.fillMaxSize()) {
             Column(modifier = Modifier.verticalScroll(state = scrollState)) {
+                // TODO: remove test
+                Text(text = "$setLatitude $setLongitude and $chosenTransportationMethod")
                 TextChooseService(modifier = Modifier.padding(start = 16.dp, top = 16.dp))
 
                 TextForIndividuals(modifier = Modifier.padding(start = 16.dp, top = 8.dp))
                 ServiceSingleChoice(
                     requiredServiceType = ServiceTypeByClient.FOR_INDIVIDUALS,
                     modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp),
-                    onChoiceClicked = {} // TODO: add
+                    onChoiceClicked = {
+                        navigateToOfficeChoiceScreen(
+                            setLatitude,
+                            setLongitude,
+                            chosenTransportationMethod,
+                            it.id.toString()
+                        )
+                    } // TODO: add
                 )
 
                 TextForBusiness(modifier = Modifier.padding(start = 16.dp, top = 8.dp))
                 ServiceSingleChoice(
                     requiredServiceType = ServiceTypeByClient.FOR_BUSINESS,
                     modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp),
-                    onChoiceClicked = {} // TODO: add
+                    onChoiceClicked = {  } // TODO: add
                 )
             }
         }
@@ -54,7 +73,13 @@ fun ServiceChoiceScreen() {
 @Preview(locale = "ru", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun ServiceChoiceScreenPreview() {
-    ServiceChoiceScreen()
+    ServiceChoiceScreen(
+        navigateToOfficeChoiceScreen =
+        { _, _, _, _ -> },
+        "",
+        "",
+        "BY_FOOT"
+    )
 }
 
 @Composable

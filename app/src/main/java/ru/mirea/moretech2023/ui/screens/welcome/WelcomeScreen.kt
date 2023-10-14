@@ -34,7 +34,14 @@ import ru.mirea.moretech2023.R
 import ru.mirea.moretech2023.ui.theme.MoreTech2023Theme
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(
+    navigateToServiceChoiceScreen: (
+        latitude: String,
+        longtitude: String,
+        chosenTransportationMethod: String
+    ) -> Unit
+) {
+
     var selectedLocationMethodIndex by rememberSaveable { mutableIntStateOf(0) }
     var typedAddress by rememberSaveable { mutableStateOf("") }
 
@@ -51,6 +58,7 @@ fun WelcomeScreen() {
                         selectedLocationMethodIndex
                     )
 
+                    // TODO: Check address is not empty when click
                     AnimatedVisibility(visible = selectedLocationMethodIndex == 1) {
                         InputAddressManually(
                             value = typedAddress,
@@ -70,7 +78,13 @@ fun WelcomeScreen() {
                 )
 
                 NextButton(
-                    onClick = { }, // TODO: Add navigation to next screen
+                    onClick = {
+                        navigateToServiceChoiceScreen(
+                            "-1",
+                            "-1",
+                            "BY_FOOT"
+                        )
+                    }, // TODO: Add navigation to next screen +
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .padding(bottom = 16.dp)
@@ -83,7 +97,9 @@ fun WelcomeScreen() {
 @Preview(locale = "ru", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun WelcomeScreenPreview() {
-    WelcomeScreen()
+    WelcomeScreen(
+        { _, _, _ -> }
+    )
 }
 
 @Composable
