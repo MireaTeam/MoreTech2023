@@ -44,13 +44,19 @@ fun MoreTechVtbApp(mapView: MapView, mapViewContext: Context) {
             composable("welcome") {
                 WelcomeScreen { latitude, longtitude, chosenTransportationMethod ->
                     navController.navigate(
-                        "servicechoice/$latitude/$longtitude/$chosenTransportationMethod"
+                        "servicechoice" +
+                                "/$latitude" +
+                                "/$longtitude" +
+                                "/$chosenTransportationMethod"
                     )
                 }
             }
 
             composable(
-                "servicechoice/{latitude}/{longtitude}/{chosentransportationmethod}"
+                "servicechoice" +
+                        "/{latitude}" +
+                        "/{longtitude}" +
+                        "/{chosentransportationmethod}"
             ) { backStackEntry ->
                 ServiceChoiceScreen(
                     { latitude, longtitude, chosenTransportationMethod, chosenServiceId ->
@@ -147,7 +153,7 @@ class MainActivity : ComponentActivity(), DrivingSession.DrivingRouteListener {
             200
         )
 
-        MapKitFactory.initialize(context);
+        MapKitFactory.initialize(context)
         DirectionsFactory.initialize(context)
 
         setContent {

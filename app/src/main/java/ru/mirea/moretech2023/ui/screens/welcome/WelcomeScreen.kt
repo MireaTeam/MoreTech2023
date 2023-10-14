@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
@@ -63,7 +64,7 @@ fun WelcomeScreen(
                         InputAddressManually(
                             value = typedAddress,
                             onValueChange = { typedAddress = it },
-                            modifier = Modifier.padding(start = 16.dp)
+                            modifier = Modifier.padding(start = 16.dp, end = 16.dp)
                         )
                     }
 
@@ -80,9 +81,14 @@ fun WelcomeScreen(
                 NextButton(
                     onClick = {
                         navigateToServiceChoiceScreen(
+                            "-1", // TODO: Add lo, la location check
                             "-1",
-                            "-1",
-                            "BY_FOOT"
+                            when(selectedTransportationMethodIndex) {
+                                1 -> "BY_FOOT"
+                                2 -> "BY_CAR"
+                                3 -> "PUBLIC_TRANSPORT"
+                                else -> "BY_FOOT"
+                            }
                         )
                     }, // TODO: Add navigation to next screen +
                     modifier = Modifier
@@ -172,7 +178,9 @@ fun InputAddressManually(
         value = value,
         onValueChange = onValueChange,
         label = { Text(stringResource(R.string.input_address)) },
-        modifier = modifier
+        modifier = modifier,
+        singleLine = true,
+
     )
 }
 
@@ -195,7 +203,8 @@ fun ChooseWayOfTransportation(
             SegmentedButton(
                 shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
                 onClick = { onChoiceSelected(index) },
-                selected = index == currentSelected
+                selected = index == currentSelected,
+                modifier = Modifier.requiredHeight(48.dp)
             ) {
                 Text(label, style = MaterialTheme.typography.labelSmall)
             }

@@ -40,8 +40,8 @@ fun ServiceChoiceScreen(
     MoreTech2023Theme {
         Surface(modifier = Modifier.fillMaxSize()) {
             Column(modifier = Modifier.verticalScroll(state = scrollState)) {
-                // TODO: remove test
-                Text(text = "$setLatitude $setLongitude and $chosenTransportationMethod")
+                // Text(text = "$setLatitude $setLongitude and $chosenTransportationMethod")
+
                 TextChooseService(modifier = Modifier.padding(start = 16.dp, top = 16.dp))
 
                 TextForIndividuals(modifier = Modifier.padding(start = 16.dp, top = 8.dp))
@@ -55,14 +55,21 @@ fun ServiceChoiceScreen(
                             chosenTransportationMethod,
                             it.id.toString()
                         )
-                    } // TODO: add
+                    }
                 )
 
                 TextForBusiness(modifier = Modifier.padding(start = 16.dp, top = 8.dp))
                 ServiceSingleChoice(
                     requiredServiceType = ServiceTypeByClient.FOR_BUSINESS,
                     modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp),
-                    onChoiceClicked = {  } // TODO: add
+                    onChoiceClicked = {
+                        navigateToOfficeChoiceScreen(
+                            setLatitude,
+                            setLongitude,
+                            chosenTransportationMethod,
+                            it.id.toString()
+                        )
+                    }
                 )
             }
         }

@@ -4,8 +4,8 @@
     <string name="welcome_description">В этом приложении вы можете найти подходящий офис или банкомат ВТБ - просто выберите, как вы планируете добираться. На следующем экране вы сможете выбрать требуемую услугу, после чего увидите список офисов и банкоматов.</string>
     <string name="next">Далее</string>
     <string name="on_foot">Пешком</string>
-    <string name="by_car">Машина</string>
-    <string name="on_public_transport">Транспорт</string>
+    <string name="by_car">На машине</string>
+    <string name="on_public_transport">Общ. транспорт</string>
     <string name="choose_service">Выберите услугу</string>
     <string name="for_individuals">Для физических лиц</string>
     <string name="for_business">Для ИП и юридических лиц</string>

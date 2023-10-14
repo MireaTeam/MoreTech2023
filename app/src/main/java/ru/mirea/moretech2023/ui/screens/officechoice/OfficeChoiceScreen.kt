@@ -18,6 +18,7 @@ fun OfficeChoiceScreen(
     chosenServiceId: String?
 ) {
     // YandexMap
+    // TODO: Add navigation to office detail screen
     Column {
         AndroidView({ mapView }) { view ->
             view.layoutParams = ViewGroup.LayoutParams(
