@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.yandex.mapkit.MapKitFactory
@@ -22,6 +23,7 @@ import com.yandex.mapkit.location.LocationManager
 import com.yandex.mapkit.location.LocationStatus
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.MapObjectCollection
+import com.yandex.mapkit.layers.ObjectEvent
 import com.yandex.mapkit.mapview.MapView
 import com.yandex.runtime.Error
 import com.yandex.runtime.ui_view.ViewProvider

@@ -86,13 +86,16 @@ fun WelcomeText(modifier: Modifier = Modifier) {
     }
 }
 
+// TODO: Add typing in location
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChooseWayOfTransportation(modifier: Modifier = Modifier) {
     var selectedIndex by remember { mutableIntStateOf(0) }
     val options = listOf(
         stringResource(R.string.on_foot),
-        stringResource(R.string.by_car), stringResource(R.string.on_public_transport)
+        stringResource(R.string.by_car),
+        stringResource(R.string.on_public_transport)
     )
 
     SingleChoiceSegmentedButtonRow(modifier = modifier) {
