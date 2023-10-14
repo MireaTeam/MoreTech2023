@@ -73,6 +73,7 @@ class MainActivity : ComponentActivity(), DrivingSession.DrivingRouteListener {
         }
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val context = applicationContext
