@@ -82,10 +82,10 @@ class Algs {
         }
     }
 
-    fun getOfficesList(jsonString: String): MutableList<BankOffice> {
+    fun getOfficesList(context: Context): MutableList<BankOffice> {
         val result: MutableList<BankOffice> = mutableListOf()
         try {
-            val jsonArray = JSONArray(jsonString)
+            val jsonArray = JSONArray(readJSONFromAssets(context, "offices.json"))
 
             for (i in 0 until jsonArray.length()) {
                 val jsonObject = jsonArray.getJSONObject(i)
