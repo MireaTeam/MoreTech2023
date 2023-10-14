@@ -8,21 +8,13 @@ data class DataBankOfficeModel(
     val metroStation: String,
     val officeType: String,
     val salePointFormat: String,
-    val weekWorkHoursData: List<WorkHours>
+    val hasRko: String,
+    val weekWorkHoursData: List<WorkHours>,
+    val businessWorkHoursData: List<WorkHours>
 )
 
-enum class Weekday(val dayShort: String) {
-    MONDAY("пн"),
-    TUESDAY("вт"),
-    WEDNESDAY("ср"),
-    THURSDAY("чт"),
-    FRIDAY("пт"),
-    SATURDAY("сб"),
-    SUNDAY("вс")
-}
-
 data class WorkHours(
-    val day: Weekday,
+    val day: String,
     val openingHour: String,
     val closingHour: String
 )
