@@ -12,7 +12,7 @@ MoreTech 5.0 2023 Hackaton VTB Android app
 4. Экран информации об отделении - показывает все данные о выбранном отделении (не закончен)
 
 Демонстрация и скриншоты:
-![app/demo.gif](app/demo.gif)
+![app/Demo.gif](app/Demo.gif)
 ![app/1.png](app/1.png)
 ![app/1.png](app/2.png)
 ![app/1.png](app/3.png)
