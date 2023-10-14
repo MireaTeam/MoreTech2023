@@ -1,6 +1,10 @@
 # MoreTech2023
 MoreTech 5.0 2023 Hackaton VTB Android app
-Задача не выполнена.
+# Задача не выполнена.
+# Роли
+1. Сергей - UI
+2. Никита - Yandex Maps
+3. Максим - парсинг данных
 # Что использовали
 Для UI: Jetpack Compose, Navigation, Glide
 Для карт: Yandex Maps SDK и API.
