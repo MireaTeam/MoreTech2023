@@ -159,7 +159,8 @@ fun ChooseAutoOrManualLocation(
                 SegmentedButton(
                     shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
                     onClick = { onChoiceSelected(index) },
-                    selected = index == currentSelected
+                    selected = index == currentSelected,
+                    modifier = Modifier.requiredHeight(48.dp)
                 ) {
                     Text(label, style = MaterialTheme.typography.labelSmall)
                 }
